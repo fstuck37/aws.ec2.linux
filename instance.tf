@@ -25,6 +25,7 @@ resource "aws_instance" "instance" {
   #tags = "${merge(var.tags,map("Name",format("%s", ${var.server_name} )))}"
 }
 
+/*
 resource "aws_security_group" "security_group" {
   count = "${length(var.security_group_ids) == 0 ? 1 : 0}"
   name = "sg-${var.server_name}"
@@ -47,7 +48,7 @@ resource "aws_security_group" "security_group" {
       cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
+*/
 data "template_file" "testbox_shell_script" {
   template = <<-EOF
 #!/bin/bash -x
