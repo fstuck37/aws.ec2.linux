@@ -16,7 +16,7 @@ resource "aws_instance" "instance" {
   subnet_id = "${var.subnet_id}"
   key_name = "${var.key_name}"
   associate_public_ip_address = "${var.associate_public_ip_address}"
-  vpc_security_group_ids = ["${length(var.security_group_id) == 0 ? aws_security_group.security_group.id : var.security_group_id}"]
+  vpc_security_group_ids = ["${length(var.security_group_ids) == 0 ? aws_security_group.security_group.id : var.security_group_id}"]
   user_data = "${data.template_file.testbox_shell_script.rendered}"
 
   ami = "${var.amis[var.region]}"
@@ -25,7 +25,7 @@ resource "aws_instance" "instance" {
 }
 
 resource "aws_security_group" "security_group" {
-  count = "${length(var.security_group_id) == 0 ? 1 : 0}"
+  count = "${length(var.security_group_ids) == 0 ? 1 : 0}"
   name = "sg-${var.server_name}"
   description = "Security Rule Set for ${var.server_name}"
   vpc_id = "${var.vpc_id}"

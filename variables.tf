@@ -8,7 +8,7 @@ variable "key_name" { }
 
 variable "server_name" { }
 
-variable "security_group_id" {
+variable "security_group_ids" {
   description = "Optional : List of Security Group ID Numbers to apply to the instance. If none are provided one will be created that allows all IP both ingress and egress.
   default = []
 }
