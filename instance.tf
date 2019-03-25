@@ -22,7 +22,7 @@ resource "aws_instance" "instance" {
 
   ami = "${var.amis[var.region]}"
 
-  tags = "${merge(var.tags,map("Name",format("%s", ${var.server_name} )))}"
+  tags = "${merge(var.tags,map("Name",format("%s", var.server_name )))}"
 }
 
 resource "aws_security_group" "security_group" {
