@@ -17,7 +17,7 @@ resource "aws_instance" "instance" {
   key_name = "${var.key_name}"
   associate_public_ip_address = "${var.associate_public_ip_address}"
   
-  vpc_security_group_ids = ["${length(var.security_group_ids) == 0 ? aws_security_group.security_group.*.id : var.security_group_ids}"]
+  vpc_security_group_ids = ["${length(var.security_group_ids) == 0 ? join(",",aws_security_group.security_group.*.id) : join(",",var.security_group_ids)}"]
   user_data = "${data.template_file.testbox_shell_script.rendered}"
 
   ami = "${var.amis[var.region]}"
