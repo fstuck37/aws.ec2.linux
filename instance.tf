@@ -22,7 +22,7 @@ resource "aws_instance" "instance" {
 
   ami = "${var.amis[var.region]}"
 
-  #tags = "${merge(var.tags,map("Name",format("%s", ${var.server_name} )))}"
+  tags = "${merge(var.tags,map("Name",format("%s", var.server_name)))}"
 }
 
 
@@ -31,8 +31,7 @@ resource "aws_security_group" "security_group" {
   name = "sg-${var.server_name}"
   description = "Security Rule Set for instance"
   vpc_id = "${var.vpc_id}"
-
-  tags = "${merge( var.tags,map("Name",format("%s",sg-${var.server_name})) )}"
+  tags = "${merge( var.tags,map("Name",format("%s",var.server_name)))}"
  
  ingress {
       from_port = 0
