@@ -32,7 +32,7 @@ resource "aws_security_group" "security_group" {
   description = "Security Rule Set for instance"
   vpc_id = "${var.vpc_id}"
 
-  #tags = "${merge( var.tags,map("Name",format("%s", sg-${var.server_name} )) )}"
+  tags = "${merge( var.tags,map("Name",format("%s", ${var.server_name} )) )}"
  
  ingress {
       from_port = 0
