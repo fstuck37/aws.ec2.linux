@@ -28,7 +28,7 @@ resource "aws_instance" "instance" {
 resource "aws_security_group" "security_group" {
   count = "${length(var.security_group_ids) == 0 ? 1 : 0}"
   name = "sg-${var.server_name}"
-  description = "Security Rule Set for ${var.server_name}"
+  description = "Security Rule Set for instance"
   vpc_id = "${var.vpc_id}"
 
   tags = "${merge(var.tags,map("Name",format("%s", sg-${var.server_name} )))}"
