@@ -18,11 +18,11 @@ resource "aws_instance" "instance" {
   associate_public_ip_address = "${var.associate_public_ip_address}"
   vpc_security_group_ids = "${aws_security_group.security_group.id}"
   #vpc_security_group_ids = ["${length(var.security_group_ids) == 0 ? aws_security_group.security_group.id : var.security_group_id}"]
-  user_data = "${data.template_file.testbox_shell_script.rendered}"
+  #user_data = "${data.template_file.testbox_shell_script.rendered}"
 
   ami = "${var.amis[var.region]}"
 
-  tags = "${merge(var.tags,map("Name",format("%s", var.server_name )))}"
+  #tags = "${merge(var.tags,map("Name",format("%s", ${var.server_name} )))}"
 }
 
 resource "aws_security_group" "security_group" {
