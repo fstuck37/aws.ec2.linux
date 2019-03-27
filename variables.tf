@@ -25,7 +25,7 @@ variable "amis" {
   type = "map"
   description = "AWS AMIs based on Region"
   default = {
-    us-east-1 = "ami-6d1c2007"
+    us-east-1 = "ami-02eac2c0129f6376b"
     us-east-2 = "ami-6a2d760f"
     us-west-1 = "ami-af4333cf"
     us-west-2 = "ami-d2c924b2"
