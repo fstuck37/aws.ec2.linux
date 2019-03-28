@@ -33,12 +33,6 @@ variable "amis" {
     eu-west-1 = "ami-04cf43aca3e6f3de3"
     eu-west-2 = "ami-0ff760d16d9497662"
     eu-central-1 = "ami-0eab3a90fc693af19"
-    ap-northeast-1 = "ami-eec1c380"
-    ap-northeast-2 = "ami-c74789a9"
-    ap-southeast-1 = "ami-f068a193"
-    ap-southeast-2 = "ami-fedafc9d"
-    ap-south-1 = "ami-95cda6fa"
-    sa-east-1 = "ami-26b93b4a"
   }
 }
 
