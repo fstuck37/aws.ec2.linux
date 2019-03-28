@@ -1,7 +1,7 @@
 AWS Instance
 =============
 
-This module deploys an AWS Instance.
+This module deploys an AWS Instance and installs Terraform, Terraforming, Go and some other utilities.
 
 Example
 ------------
