@@ -51,7 +51,8 @@ variable "associate_public_ip_address"  {
   default = "false"
 }
 
-variable "tags" { type = "map" 
+variable "tags" { 
+  type = "map" 
   description = "Optional : A map of tags to assign to the resource."  
   default = { }
 }
