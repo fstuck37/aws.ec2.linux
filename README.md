@@ -10,16 +10,16 @@ module "testbox" {
   source      = "git::https://github.com/fstuck37/aws.ec2.linux.git"
   region      = "us-east-1"
   subnet_id   = "subnet-1234567890abcdef1"
-  key_name    = "${aws_key_pair.testbox-key.key_name}"
+  key_name    = aws_key_pair.testbox-key.key_name
   server_name = "test37"
   vpc_id      = "vpc-1234567890abcdef1"
-  access_key  = "${var.access_key}"
-  secret_key  = "${var.secret_key}"
+  access_key  = var.access_key
+  secret_key  = var.secret_key
 }
 
 resource "aws_key_pair" "testbox-key" {
   key_name_prefix = "test-key"
-  public_key      = "${file(var.public_key_file)}"
+  public_key      = file(var.public_key_file)
 }
 
 variable "public_key_file" {
@@ -27,7 +27,7 @@ variable "public_key_file" {
 }
 
 variable "tags" {
-  type = "map"
+  type = map(string)
   default = {
     dept = "Development"
     Billing = "12345"

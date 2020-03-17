@@ -22,16 +22,16 @@ variable "secret_key" {
 }
 
 variable "amis" {
-  type = "map"
+  type = map(string)
   description = "AWS AMIs based on Region"
   default = {
-    us-east-1 = "ami-02eac2c0129f6376b"
-    us-east-2 = "ami-0f2b4fc905b0bd1f1"
-    us-west-1 = "ami-074e2d6769f445be5"
-    us-west-2 = "ami-01ed306a12b7d1c96"
+    us-east-1    = "ami-02eac2c0129f6376b"
+    us-east-2    = "ami-0f2b4fc905b0bd1f1"
+    us-west-1    = "ami-074e2d6769f445be5"
+    us-west-2    = "ami-01ed306a12b7d1c96"
     ca-central-1 = "ami-033e6106180a626d0"
-    eu-west-1 = "ami-04cf43aca3e6f3de3"
-    eu-west-2 = "ami-0ff760d16d9497662"
+    eu-west-1    = "ami-04cf43aca3e6f3de3"
+    eu-west-2    = "ami-0ff760d16d9497662"
     eu-central-1 = "ami-0eab3a90fc693af19"
   }
 }
@@ -48,10 +48,11 @@ variable "instance_type"  {
 
 variable "associate_public_ip_address"  { 
   description = "Optional : create a public IP address to the instance"
-  default = "false"
+  default = false
 }
 
-variable "tags" { type = "map" 
+variable "tags" {
+type = map(string)
   description = "Optional : A map of tags to assign to the resource."  
   default = { }
 }

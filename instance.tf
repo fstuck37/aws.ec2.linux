@@ -12,39 +12,35 @@
 
 /* define am AWS Instances */
 resource "aws_instance" "instance" {
-  instance_type = "${var.instance_type}"
-  subnet_id = "${var.subnet_id}"
-  key_name = "${var.key_name}"
-  associate_public_ip_address = "${var.associate_public_ip_address}"
-  
-  vpc_security_group_ids = ["${length(var.security_group_ids) == 0 ? join(",",aws_security_group.security_group.*.id) : join(",",var.security_group_ids)}"]
-  user_data = "${data.template_file.testbox_shell_script.rendered}"
-
-  ami = "${var.amis[var.region]}"
-
-  tags = "${merge(var.tags,map("Name",format("%s", var.server_name)))}"
+  instance_type               = var.instance_type
+  subnet_id                   = var.subnet_id
+  key_name                    = var.key_name
+  associate_public_ip_address = var.associate_public_ip_address
+  vpc_security_group_ids      = [length(var.security_group_ids) == 0 ? join(",",aws_security_group.security_group.*.id) : join(",",var.security_group_ids)]
+  user_data                   = data.template_file.testbox_shell_script.rendered
+  ami                         = var.amis[var.region]
+  tags                        = merge(var.tags,map("Name",format("%s", var.server_name)))
 }
 
-
 resource "aws_security_group" "security_group" {
-  count = "${ length(var.security_group_ids) == 0 ? 1 : 0}"
-  name = "${var.server_name}"
+  count       = length(var.security_group_ids) == 0 ? 1 : 0
+  name        = var.server_name
   description = "Security Rule Set for instance"
-  vpc_id = "${var.vpc_id}"
-  tags = "${merge( var.tags,map("Name",format("%s",var.server_name)))}"
+  vpc_id      = var.vpc_id
+  tags        = merge( var.tags,map("Name",format("%s",var.server_name)))
  
- ingress {
-      from_port = 0
-      to_port = 0
-      protocol = "-1"
-      cidr_blocks = ["0.0.0.0/0"]
+  ingress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
-      from_port = 0
-      to_port = 0
-      protocol = "-1"
-      cidr_blocks = ["0.0.0.0/0"]
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
