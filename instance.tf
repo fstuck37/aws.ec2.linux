@@ -20,7 +20,15 @@ resource "aws_instance" "instance" {
   user_data                   = data.template_file.testbox_shell_script.rendered
   ami                         = var.amis[var.region]
   tags                        = merge(var.tags,map("Name",format("%s", var.server_name)))
+
+  root_block_device {
+    delete_on_termination     = true
+  }
 }
+
+
+
+
 
 resource "aws_security_group" "security_group" {
   count       = length(var.security_group_ids) == 0 ? 1 : 0
