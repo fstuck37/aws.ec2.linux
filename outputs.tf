@@ -17,3 +17,7 @@ output "public_ip" {
 output "public_dns" {
   value = aws_instance.instance.public_dns
 }
+
+output "primary_network_interface_id" {
+  value = aws_instance.instance.primary_network_interface_id
+}
